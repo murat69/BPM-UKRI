@@ -1,0 +1,46 @@
+
+/*--------------------------------------------------------------
+# Counts
+--------------------------------------------------------------*/
+.counts {
+  padding: 10px;
+}
+
+.counts .counters span {
+  font-size: 48px;
+
+  color: #fff;
+  line-height: 100px;
+  height: 100px;
+  width: 100px;
+  border-style: solid;
+  border-color: rgb(245, 241, 241);
+  border-radius: 50%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  -webkit-transform:translate(0%,0%);
+ transform:translate(0%,0%);
+}
+.circle span:hover::after {
+  content:'';
+
+  top:0; right:0; bottom:0; left:0;
+  display:block;
+  position:absolute;
+  border-radius:50%;
+  border: 1px solid rgb(232, 176, 64);
+  -webkit-animation: ripple 1s ;
+  animation: ripple 1s ;
+}
+
+@keyframes ripple{
+  0% {transform:scale(1); border: 1px solid; opacity: 1;}
+  100% {transform:scale(1.5);  border: 10px solid; opacity: 0;}
+ }
+
+.counts .counters p {
+  padding: 0;
+  margin: 0 0 20px 0;
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+}

@@ -1,0 +1,55 @@
+/**
+* Template Name: Valera - v4.9.1
+* Template URL: https://bootstrapmade.com/valera-free-bootstrap-theme/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
+
+.hide { position:absolute; top:0px; left:0px; width:0px; height:0px; }
+
+/* Tugas dan Fungsi */
+
+.counts .fungsi  {
+    border-left: 10px solid;
+}
+
+.about .btn-get-started {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 40px;
+  border-radius: 4px;
+  transition: 0.5s;
+  border: 2px solid #fff;
+  color: #fff;
+  background-color: rgb(128, 0, 0);
+}
+  
+  .about .btn-get-started:hover {
+  background: #ff7f5d;
+  border: 2px solid #ff7f5d;
+}
+
+.imgakre{
+    height: 500px;
+    width: 700px;
+}
+
+.imgakrejur{
+    height: 300px;
+    width: 400px;
+}
+
+
+.peraturan a{
+  color: rgb(0, 0, 0);
+}
+  
+
+
+
+
+
+

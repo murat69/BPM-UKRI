@@ -1,0 +1,46 @@
+
+.bulat {
+    height: 56px;
+   width: 56px;
+   line-height: 60px;
+   border-radius: 50%;
+   background-color: #015835;
+   text-align: center;
+ -webkit-transform:translate(0%,0%);
+ transform:translate(0%,0%);
+}
+
+
+
+.bulat i{
+   color: #e8ecf0;
+   font-size: 20px;
+   margin: auto;
+}
+
+
+.circle:before,
+.circle:after {
+ content:'';
+ display:block;
+ position:absolute;
+ top:0; right:0; bottom:0; left:0;
+ border-radius:50%;
+ border: 1px solid rgb(232, 176, 64);
+}
+
+.circle:before {
+ -webkit-animation: ripple 5s linear infinite;
+ animation: ripple 1s linear infinite;
+}
+.circle:after {
+ -webkit-animation: ripple 1s linear 1s infinite;
+ animation: ripple 1s linear 1s infinite;
+}
+
+
+
+@keyframes ripple{
+ 0% {transform:scale(1); border: 1px solid rgb(232, 176, 64);}
+ 100% {transform:scale(1.2); opacity:0; border: 1px solid rgb(180, 0, 0);}
+}
