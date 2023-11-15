@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/foo', function () {
-//     Artisan::call('storage:link');
-// });
+Route::get('/foo', function () {
+    Artisan::call('storage:link');
+});
 Route::get(
     '/',
     [App\Http\Controllers\PublicController::class, 'welcome']
@@ -53,6 +53,12 @@ Route::get(
     '/spmi/{kat}',
     [App\Http\Controllers\PublicController::class, 'spmi']
 )->name('spmi-pub');
+
+Route::prefix('folder/')->group(
+    function () {
+        Route::get('detail/{id}', [App\Http\Controllers\FolderController::class, 'show'])->name('folder.detail');
+    }
+);
 
 Route::prefix('baca/')->group(
     function () {
@@ -168,6 +174,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
                     Route::post('store', [App\Http\Controllers\UserController::class, 'store'])->name('user.store');
                     Route::post('update/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
                     Route::delete('destroy/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.destroy');
+                }
+            );
+            Route::prefix('folder/')->group(
+                function () {
+                    Route::get('', [App\Http\Controllers\FolderController::class, 'index'])->name('folder');
+                    Route::get('tambah', [App\Http\Controllers\FolderController::class, 'create'])->name('folder.tambah');
+                    Route::get('edit/{id}', [App\Http\Controllers\FolderController::class, 'edit'])->name('folder.edit');
+                    Route::post('store', [App\Http\Controllers\FolderController::class, 'store'])->name('folder.store');
+                    Route::post('update/{id}', [App\Http\Controllers\FolderController::class, 'update'])->name('folder.update');
+                    Route::delete('destroy/{id}', [App\Http\Controllers\FolderController::class, 'destroy'])->name('folder.destroy');
                 }
             );
 

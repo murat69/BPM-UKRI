@@ -137,15 +137,16 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
+                @if (Auth::check())
+                    <li class="nav-item d-none d-sm-inline-block">
 
-                <li class="nav-item d-none d-sm-inline-block">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="nav-link btn btn-link">Logout</button>
+                        </form>
 
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="nav-link btn btn-link">Logout</button>
-                    </form>
-
-                </li>
+                    </li>
+                @endif
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -183,369 +184,387 @@
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard') }}" class="nav-link active ">
-                                <p>
-                                    <i class="fa-solid fa-house-user"></i>
-                                    Home
-                                </p>
-                            </a>
-                        </li>
-                        {{-- BPM --}}
-                        @if (Auth::user()->role == 'admin')
-                            <li class="nav-item menu-close">
-                                <a href="#" class="nav-link">
-                                    <i class="fa-solid fa-id-card-clip"></i>
-                                    <p style="text-align: center;">
-                                        BPM
-                                    </p>
-                                    <i class="right fas fa-angle-left"></i>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item menu-close">
-                                        <a href="#" class="nav-link">
-                                            <i class="fa-solid fa-id-card-clip"></i>
-                                            <p style="text-align: center;">
-                                                Sistem Penjaminanan Mutu
-                                            </p>
-                                            <i class="right fas fa-angle-left"></i>
-                                        </a>
-                                        <ul class="nav nav-treeview">
-
-                                            <li class="nav-item menu-open">
-                                                <a href="#" class="nav-link">
-                                                    <i class="fa-solid fa-folder"></i>
-                                                    <p style="font-size:14.5px; margin-left: 10px;">
-                                                        Sistem Penjaminan Mutu Internal (SPMI)
-                                                        <i class="right fas fa-angle-left"
-                                                            style="margin-top: 1.5vh;"></i>
-                                                    </p>
-                                                </a>
-                                                <ul class="nav nav-treeview">
-                                                    <li class="nav-item">
-                                                        <a href="{{ route('SPMI') }}" class="nav-link">
-                                                            <i class="fa-solid fa-folder-open"></i>
-                                                            <p>SPMI FULL</p>
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item menu-close">
-                                                        <a href="index.php?halaman=spme" class="nav-link">
-                                                            <i class="fa-solid fa-folder-open"></i>
-                                                            <p>Penetapan</p>
-                                                            <i class="right fas fa-angle-left"></i>
-                                                        </a>
-                                                        <ul class="nav nav-treeview">
-
-                                                            <li class="nav-item">
-                                                                <a href="{{ route('SPMI.Sub_kategori', 'Pengaturan Tentang Kebijakan SPMI') }}"
-                                                                    class="nav-link">
-                                                                    <i class="nav-icon fas fa-circle"></i>
-                                                                    <p>Pengaturan Tentang Kebijakan SPMI</p>
-                                                                </a>
-                                                            </li>
-
-                                                            <li class="nav-item">
-                                                                <a href="{{ route('SPMI.Sub_kategori', 'Standar Yang Di Tetapkan Intitusi') }}"
-                                                                    class="nav-link">
-                                                                    <i class="nav-icon fas fa-circle"></i>
-                                                                    <p>Standar Yang Di Tetapkan Intitusi</p>
-                                                                </a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a href="{{ route('SPMI.Sub_kategori', 'Standar Lain') }}"
-                                                                    class="nav-link">
-                                                                    <i class="nav-icon fas fa-circle"></i>
-                                                                    <p>Standar Lain</p>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="{{ route('SPMI.kategori', 'Pelaksanaan') }}"
-                                                            class="nav-link">
-                                                            <i class="fa-solid fa-folder-open"></i>
-                                                            <p>Pelaksanaan</p>
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item  menu-close">
-                                                        <a href="" class="nav-link">
-                                                            <i class="fa-solid fa-folder-open"></i>
-                                                            <p>Evaluasi</p>
-                                                            <i class="right fas fa-angle-left"></i>
-                                                        </a>
-                                                        <ul class="nav nav-treeview">
-
-                                                            <li class="nav-item">
-                                                                <a href="{{ route('SPMI.Sub_kategori', 'Audit Mutu Internal') }}"
-                                                                    class="nav-link">
-                                                                    <i class="nav-icon fas fa-circle"></i>
-                                                                    <p>Audit Mutu Internal</p>
-                                                                </a>
-                                                            </li>
-
-                                                            <li class="nav-item">
-                                                                <a href="{{ route('SPMI.Sub_kategori', 'Evaluasi Lain') }}"
-                                                                    class="nav-link">
-                                                                    <i class="nav-icon fas fa-circle"></i>
-                                                                    <p>Evaluasi Lain</p>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="{{ route('SPMI.kategori', 'Pengendalian') }}"
-                                                            class="nav-link">
-                                                            <i class="fa-solid fa-folder-open"></i>
-                                                            <p>Pengendalian</p>
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="{{ route('SPMI.kategori', 'Peningkatan') }}"
-                                                            class="nav-link">
-                                                            <i class="fa-solid fa-folder-open"></i>
-                                                            <p>Peningkatan</p>
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item ">
-                                                        <a href="{{ route('SPMI.kategori', 'Undang-Undang') }}"
-                                                            class="nav-link">
-                                                            <i class="fa-solid fa-folder-open"></i>
-                                                            <p style="margin: 10px;">Undang Undang</p>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="index.php?halaman=spme" class="nav-link">
-                                                    <i class="fa-solid fa-folder"></i>
-                                                    <p>Sistem Penjaminan Mutu Eksternal(SPME)</p>
-                                                </a>
-                                            </li>
-
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                        {{-- Universitas --}}
-                        @if (Auth::user()->role == 'admin' ||
-                                auth()->user()->role === 'wr1' ||
-                                auth()->user()->role === 'wr2' ||
-                                auth()->user()->role === 'wr3')
-                            <li class="nav-item menu-close">
-                                <a href="#" class="nav-link">
-                                    <i class="fa-solid fa-id-card-clip"></i>
-                                    <p style="text-align: center;">
-                                        Dokument Universitas
-                                    </p>
-                                    <i class="right fas fa-angle-left"></i>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('universitas', 'sk') }}" class="nav-link">
-                                            <i class="fa-solid fa-folder"></i>
-                                            <p>SK Rektor</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('universitas', 'pedoman') }}" class="nav-link">
-                                            <i class="fa-solid fa-folder"></i>
-                                            <p>Pedoman</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('universitas', 'lain-lain') }}" class="nav-link">
-                                            <i class="fa-solid fa-folder"></i>
-                                            <p>Lain-Lain</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                        {{-- Fakultas --}}
-                        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'fakultas')
-                            <li class="nav-item menu-close">
-                                <a href="" class="nav-link">
-                                    <i class="fa-solid fa-id-card-clip"></i>
-                                    <p style="text-align: center;">
-                                        Fakultas
-                                    </p>
-                                    <i class="right fas fa-angle-left"></i>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('file_fakultas', 'sk') }}" class="nav-link">
-                                            <i class="fa-solid fa-folder"></i>
-                                            <p>SK</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('file_fakultas', 'renstra') }}" class="nav-link">
-                                            <i class="fa-solid fa-folder"></i>
-                                            <p>Renstra</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('file_fakultas', 'lain') }}" class="nav-link">
-                                            <i class="fa-solid fa-folder"></i>
-                                            <p>Lain-Lain</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                        {{-- Prodi --}}
-                        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'prodi')
-                            <li class="nav-item menu-close">
-                                <a href="#" class="nav-link">
-                                    <i class="fa-solid fa-id-card-clip"></i>
-                                    <p style="text-align: center;">
-                                        Prodi
-                                    </p>
-                                    <i class="right fas fa-angle-left"></i>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('prodi', 'lain') }}" class="nav-link">
-                                            <i class="fa-solid fa-folder"></i>
-                                            <p>Data Prodi</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('prodi', 'kinerja') }}" class="nav-link">
-                                            <i class="fa-solid fa-folder"></i>
-                                            <p>Laporan Kinerja Program Studi</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('prodi', 'evaluasi') }}" class="nav-link">
-                                            <i class="fa-solid fa-folder"></i>
-                                            <p>Laporan Evaluasi Diri</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                        {{-- Akreditasi --}}
-                        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'fakultas' || Auth::user()->role == 'prodi')
-                            <li class="nav-item menu-close">
-                                <a href="#" class="nav-link">
-                                    <i class="fa-solid fa-id-card-clip"></i>
-                                    <p style="text-align: center;">
-                                        Akreditasi
-                                    </p>
-                                    <i class="right fas fa-angle-left"></i>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('akreditasi') }}" class="nav-link ">
-                                            <i class="fa-solid fa-certificate"></i>
-                                            <p style="margin-left: 10px;">Akreditasi</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item menu-close">
-                                        <a href="#" class="nav-link">
-                                            <i class="fa-solid fa-id-card-clip"></i>
-                                            <p style="text-align: center;">
-                                                Reakreditasi
-                                            </p>
-                                            <i class="right fas fa-angle-left"></i>
-                                        </a>
-                                        <ul class="nav nav-treeview">
-                                            <li class="nav-item">
-                                                <a href="{{ route('reakreditasi', 'sk') }}" class="nav-link">
-                                                    <i class="fa-solid fa-folder"></i>
-                                                    <p>SK</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="{{ route('reakreditasi', 'led') }}" class="nav-link">
-                                                    <i class="fa-solid fa-folder"></i>
-                                                    <p>LED</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="{{ route('reakreditasi', 'lkps') }}" class="nav-link">
-                                                    <i class="fa-solid fa-folder"></i>
-                                                    <p>LKPS</p>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('reakreditasi', 'penyusunan') }}" class="nav-link">
-                                            <i class="fa-solid fa-folder"></i>
-                                            <p>Proses Penyusunan LKPS dan LED</p>
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </li>
-                        @endif
-                        {{-- Master Data --}}
-                        @if (Auth::user()->role == 'admin')
+                        @if (Auth::check())
                             <li class="nav-item">
-                                <a href="{{ route('berita') }}" class="nav-link">
+                                <a href="{{ route('dashboard') }}" class="nav-link active ">
+                                    <p>
+                                        <i class="fa-solid fa-house-user"></i>
+                                        Home
+                                    </p>
+                                </a>
+                            </li>
+                            {{-- BPM --}}
+                            @if (Auth::user()->role == 'admin')
+                                <li class="nav-item menu-close">
+                                    <a href="#" class="nav-link">
+                                        <i class="fa-solid fa-id-card-clip"></i>
+                                        <p style="text-align: center;">
+                                            BPM
+                                        </p>
+                                        <i class="right fas fa-angle-left"></i>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item menu-close">
+                                            <a href="#" class="nav-link">
+                                                <i class="fa-solid fa-id-card-clip"></i>
+                                                <p style="text-align: center;">
+                                                    Sistem Penjaminanan Mutu
+                                                </p>
+                                                <i class="right fas fa-angle-left"></i>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+
+                                                <li class="nav-item menu-open">
+                                                    <a href="#" class="nav-link">
+                                                        <i class="fa-solid fa-folder"></i>
+                                                        <p style="font-size:14.5px; margin-left: 10px;">
+                                                            Sistem Penjaminan Mutu Internal (SPMI)
+                                                            <i class="right fas fa-angle-left"
+                                                                style="margin-top: 1.5vh;"></i>
+                                                        </p>
+                                                    </a>
+                                                    <ul class="nav nav-treeview">
+                                                        <li class="nav-item">
+                                                            <a href="{{ route('SPMI') }}" class="nav-link">
+                                                                <i class="fa-solid fa-folder-open"></i>
+                                                                <p>SPMI FULL</p>
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item menu-close">
+                                                            <a href="index.php?halaman=spme" class="nav-link">
+                                                                <i class="fa-solid fa-folder-open"></i>
+                                                                <p>Penetapan</p>
+                                                                <i class="right fas fa-angle-left"></i>
+                                                            </a>
+                                                            <ul class="nav nav-treeview">
+
+                                                                <li class="nav-item">
+                                                                    <a href="{{ route('SPMI.Sub_kategori', 'Pengaturan Tentang Kebijakan SPMI') }}"
+                                                                        class="nav-link">
+                                                                        <i class="nav-icon fas fa-circle"></i>
+                                                                        <p>Pengaturan Tentang Kebijakan SPMI</p>
+                                                                    </a>
+                                                                </li>
+
+                                                                <li class="nav-item">
+                                                                    <a href="{{ route('SPMI.Sub_kategori', 'Standar Yang Di Tetapkan Intitusi') }}"
+                                                                        class="nav-link">
+                                                                        <i class="nav-icon fas fa-circle"></i>
+                                                                        <p>Standar Yang Di Tetapkan Intitusi</p>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a href="{{ route('SPMI.Sub_kategori', 'Standar Lain') }}"
+                                                                        class="nav-link">
+                                                                        <i class="nav-icon fas fa-circle"></i>
+                                                                        <p>Standar Lain</p>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a href="{{ route('SPMI.kategori', 'Pelaksanaan') }}"
+                                                                class="nav-link">
+                                                                <i class="fa-solid fa-folder-open"></i>
+                                                                <p>Pelaksanaan</p>
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item  menu-close">
+                                                            <a href="" class="nav-link">
+                                                                <i class="fa-solid fa-folder-open"></i>
+                                                                <p>Evaluasi</p>
+                                                                <i class="right fas fa-angle-left"></i>
+                                                            </a>
+                                                            <ul class="nav nav-treeview">
+
+                                                                <li class="nav-item">
+                                                                    <a href="{{ route('SPMI.Sub_kategori', 'Audit Mutu Internal') }}"
+                                                                        class="nav-link">
+                                                                        <i class="nav-icon fas fa-circle"></i>
+                                                                        <p>Audit Mutu Internal</p>
+                                                                    </a>
+                                                                </li>
+
+                                                                <li class="nav-item">
+                                                                    <a href="{{ route('SPMI.Sub_kategori', 'Evaluasi Lain') }}"
+                                                                        class="nav-link">
+                                                                        <i class="nav-icon fas fa-circle"></i>
+                                                                        <p>Evaluasi Lain</p>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a href="{{ route('SPMI.kategori', 'Pengendalian') }}"
+                                                                class="nav-link">
+                                                                <i class="fa-solid fa-folder-open"></i>
+                                                                <p>Pengendalian</p>
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a href="{{ route('SPMI.kategori', 'Peningkatan') }}"
+                                                                class="nav-link">
+                                                                <i class="fa-solid fa-folder-open"></i>
+                                                                <p>Peningkatan</p>
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item ">
+                                                            <a href="{{ route('SPMI.kategori', 'Undang-Undang') }}"
+                                                                class="nav-link">
+                                                                <i class="fa-solid fa-folder-open"></i>
+                                                                <p style="margin: 10px;">Undang Undang</p>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a href="index.php?halaman=spme" class="nav-link">
+                                                        <i class="fa-solid fa-folder"></i>
+                                                        <p>Sistem Penjaminan Mutu Eksternal(SPME)</p>
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('folder') }}" class="nav-link">
+                                                <i class="fa-solid fa-folder-open"></i>
+                                                <p>Folder</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @endif
+                            {{-- Universitas --}}
+                            @if (Auth::user()->role == 'admin' ||
+                                    auth()->user()->role === 'wr1' ||
+                                    auth()->user()->role === 'wr2' ||
+                                    auth()->user()->role === 'wr3')
+                                <li class="nav-item menu-close">
+                                    <a href="#" class="nav-link">
+                                        <i class="fa-solid fa-id-card-clip"></i>
+                                        <p style="text-align: center;">
+                                            Dokument Universitas
+                                        </p>
+                                        <i class="right fas fa-angle-left"></i>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="{{ route('universitas', 'sk') }}" class="nav-link">
+                                                <i class="fa-solid fa-folder"></i>
+                                                <p>SK Rektor</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('universitas', 'pedoman') }}" class="nav-link">
+                                                <i class="fa-solid fa-folder"></i>
+                                                <p>Pedoman</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('universitas', 'lain-lain') }}" class="nav-link">
+                                                <i class="fa-solid fa-folder"></i>
+                                                <p>Lain-Lain</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @endif
+                            {{-- Fakultas --}}
+                            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'fakultas')
+                                <li class="nav-item menu-close">
+                                    <a href="" class="nav-link">
+                                        <i class="fa-solid fa-id-card-clip"></i>
+                                        <p style="text-align: center;">
+                                            Fakultas
+                                        </p>
+                                        <i class="right fas fa-angle-left"></i>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="{{ route('file_fakultas', 'sk') }}" class="nav-link">
+                                                <i class="fa-solid fa-folder"></i>
+                                                <p>SK</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('file_fakultas', 'renstra') }}" class="nav-link">
+                                                <i class="fa-solid fa-folder"></i>
+                                                <p>Renstra</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('file_fakultas', 'lain') }}" class="nav-link">
+                                                <i class="fa-solid fa-folder"></i>
+                                                <p>Lain-Lain</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @endif
+                            {{-- Prodi --}}
+                            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'prodi')
+                                <li class="nav-item menu-close">
+                                    <a href="#" class="nav-link">
+                                        <i class="fa-solid fa-id-card-clip"></i>
+                                        <p style="text-align: center;">
+                                            Prodi
+                                        </p>
+                                        <i class="right fas fa-angle-left"></i>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="{{ route('prodi', 'lain') }}" class="nav-link">
+                                                <i class="fa-solid fa-folder"></i>
+                                                <p>Data Prodi</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('prodi', 'kinerja') }}" class="nav-link">
+                                                <i class="fa-solid fa-folder"></i>
+                                                <p>Laporan Kinerja Program Studi</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('prodi', 'evaluasi') }}" class="nav-link">
+                                                <i class="fa-solid fa-folder"></i>
+                                                <p>Laporan Evaluasi Diri</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @endif
+                            {{-- Akreditasi --}}
+                            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'fakultas' || Auth::user()->role == 'prodi')
+                                <li class="nav-item menu-close">
+                                    <a href="#" class="nav-link">
+                                        <i class="fa-solid fa-id-card-clip"></i>
+                                        <p style="text-align: center;">
+                                            Akreditasi
+                                        </p>
+                                        <i class="right fas fa-angle-left"></i>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="{{ route('akreditasi') }}" class="nav-link ">
+                                                <i class="fa-solid fa-certificate"></i>
+                                                <p style="margin-left: 10px;">Akreditasi</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item menu-close">
+                                            <a href="#" class="nav-link">
+                                                <i class="fa-solid fa-id-card-clip"></i>
+                                                <p style="text-align: center;">
+                                                    Reakreditasi
+                                                </p>
+                                                <i class="right fas fa-angle-left"></i>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">
+                                                    <a href="{{ route('reakreditasi', 'sk') }}" class="nav-link">
+                                                        <i class="fa-solid fa-folder"></i>
+                                                        <p>SK</p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="{{ route('reakreditasi', 'led') }}" class="nav-link">
+                                                        <i class="fa-solid fa-folder"></i>
+                                                        <p>LED</p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="{{ route('reakreditasi', 'lkps') }}" class="nav-link">
+                                                        <i class="fa-solid fa-folder"></i>
+                                                        <p>LKPS</p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('reakreditasi', 'penyusunan') }}" class="nav-link">
+                                                <i class="fa-solid fa-folder"></i>
+                                                <p>Proses Penyusunan LKPS dan LED</p>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                            @endif
+                            {{-- Master Data --}}
+                            @if (Auth::user()->role == 'admin')
+                                <li class="nav-item">
+                                    <a href="{{ route('berita') }}" class="nav-link">
+                                        <i class="fa-solid fa-folder"></i>
+                                        <p style="font-size:14.5px; margin-left: 10px;">
+
+                                            Berita
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item menu-close">
+                                    <a href="#" class="nav-link">
+                                        <i class="fa-solid fa-gear"></i>
+                                        <p style="font-size:14.5px; margin-left: 10px;">
+
+                                            Master Data
+                                            <i class="right fas fa-angle-left" style="margin-top: 0.5vh;"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="{{ route('fakultas') }}" class="nav-link">
+                                                <i class="fa-solid fa-gears"></i>
+                                                <p>Fakultas</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('jurusan') }}" class="nav-link">
+                                                <i class="fa-solid fa-gears"></i>
+                                                <p>Prodi</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('kategori') }}" class="nav-link">
+                                                <i class="fa-solid fa-gears"></i>
+                                                <p>kategori</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('sub_kategori') }}" class="nav-link">
+                                                <i class="fa-solid fa-gears"></i>
+                                                <p>Sub kategori</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('user') }}" class="nav-link">
+                                                <i class="fa-solid fa-gears"></i>
+                                                <p>Users</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('conten') }}" class="nav-link">
+                                                <i class="fa-solid fa-gears"></i>
+                                                <p>Content</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+
+
+                                <!-- Menu Prodi  -->
+                            @endif
+                        @else
+                            <li class="nav-item">
+                                <a href="" class="nav-link active">
                                     <i class="fa-solid fa-folder"></i>
                                     <p style="font-size:14.5px; margin-left: 10px;">
 
-                                        Berita
+                                        Folder
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item menu-close">
-                                <a href="#" class="nav-link">
-                                    <i class="fa-solid fa-gear"></i>
-                                    <p style="font-size:14.5px; margin-left: 10px;">
-
-                                        Master Data
-                                        <i class="right fas fa-angle-left" style="margin-top: 0.5vh;"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('fakultas') }}" class="nav-link">
-                                            <i class="fa-solid fa-gears"></i>
-                                            <p>Fakultas</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('jurusan') }}" class="nav-link">
-                                            <i class="fa-solid fa-gears"></i>
-                                            <p>Prodi</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('kategori') }}" class="nav-link">
-                                            <i class="fa-solid fa-gears"></i>
-                                            <p>kategori</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('sub_kategori') }}" class="nav-link">
-                                            <i class="fa-solid fa-gears"></i>
-                                            <p>Sub kategori</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('user') }}" class="nav-link">
-                                            <i class="fa-solid fa-gears"></i>
-                                            <p>Users</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('conten') }}" class="nav-link">
-                                            <i class="fa-solid fa-gears"></i>
-                                            <p>Content</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-
-
-                            <!-- Menu Prodi  -->
                         @endif
                     </ul>
                 </nav>

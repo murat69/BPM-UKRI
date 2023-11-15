@@ -155,7 +155,9 @@ class SPMIController extends Controller
 
         $spmi = SPMI::findOrFail($id);
         $spmi->judul = $request->judul;
-        $spmi->nama_file =  '/BPM/' . $namafile;
+        if ($request->hasFile('nama_file')) {
+            $spmi->nama_file =  '/BPM/' . $namafile;
+        }
         $spmi->kategori_id = $request->kategori;
         $spmi->sub_kategori_id = $request->sub_kategori;
         $spmi->akses = $request->akses;
